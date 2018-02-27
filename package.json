@@ -1,0 +1,30 @@
+{
+  "name": "cybersmart-node",
+  "version": "1.0.0",
+  "description": "A CyberSmart Node for use in the CyberSmart IoT Smart Home",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/UniversityGroup/CyberSmart-Node.git"
+  },
+  "keywords": [
+    "cybersmart",
+    "node",
+    "device",
+    "server"
+  ],
+  "author": "The Slackers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UniversityGroup/CyberSmart-Node/issues"
+  },
+  "homepage": "https://github.com/UniversityGroup/CyberSmart-Node#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "nodemon": "^1.15.1"
+  }
+}
