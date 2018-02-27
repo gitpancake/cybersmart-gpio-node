@@ -1,0 +1,10 @@
+{
+    "name" : "state-handler",
+    "description" : "A State Handler for devices on a Smart Home network",
+    "author" : "Henry Pye",
+    "version" : "1.0.0",
+    "main" : "index.js",
+    "keywords" : [
+        "state", "handler", "smart-home", "cybersmart"
+    ]
+}
