@@ -24,6 +24,7 @@
   "homepage": "https://github.com/UniversityGroup/CyberSmart-Node#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "epoll": "^2.0.0",
     "express": "^4.16.2",
     "nodemon": "^1.15.1",
     "rpi-gpio": "^0.9.1"
