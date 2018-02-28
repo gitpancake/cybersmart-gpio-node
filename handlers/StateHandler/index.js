@@ -1,28 +1,33 @@
 /*jshint esversion: 6*/
 var pi = false;
-var GPIO = require('rpi-gpio');
+var pyshell = require('python-shell')
+var on_signal = 'on.py';
+var off_signal = 'off.py';
 
 var SWITCH = [];
 var pins = [7];
 
 class StateHandler {
     constructor() {
-        try {
-            GPIO.setup(7, GPIO.DIR_OUT, write);
-        } catch (ex) {
-            console.log('[WARNING] RUN THIS ON A RASPBERRY PI TO USE GPIO');
-        }
+
     }
 
     ChangeState(state) {
-        for (let pin in pins) {
-            GPIO.write(7, (state === 1 ? true : false), function(err) {
-                if (err) 
-                    console.error(err);
-                
-                console.log("Written to pin");
-            });
-        }   
+	if (state === 0) {
+		var shell = pyshell.run(off_signal, {
+		scriptPath: '/home/pi/Documents/Projects/CyberSmart-Node/handlers/StateHandler/',
+		args: [state]
+			}, function(err) {
+			if (err) console.error(err);
+		});
+	} else if (state === 1) {
+		var shell = pyshell.run(on_signal, {
+		scriptPath: '/home/pi/Documents/Projects/CyberSmart-Node/handlers/StateHandler/',
+		args: [state]
+		}, function(err) {
+			if (err) console.error(err);
+		});
+	}
     }
 }
 
