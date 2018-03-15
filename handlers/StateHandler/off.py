@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import sys
+
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 
@@ -10,4 +11,7 @@ for i in pinList:
     GPIO.setup(i, GPIO.OUT)
     GPIO.output(i, GPIO.LOW)
 
+print "off"
+
 GPIO.cleanup()
+sys.stdout.flush()
