@@ -1,11 +1,7 @@
 /*jshint esversion: 6*/
-var pi = false;
 var pyshell = require('python-shell')
 var on_signal = '/home/pi/Documents/Projects/CyberSmart-Node/handlers/StateHandler/';
 var off_signal = '/home/pi/Documents/Projects/CyberSmart-Node/handlers/StateHandler/';
-
-var SWITCH = [];
-var pins = [7];
 
 class StateHandler {
     constructor() {
@@ -13,19 +9,25 @@ class StateHandler {
     }
 
     ChangeState(state) {
-	var stateInt = parseInt(state);
-	if (stateInt === 0) {
-		pyshell.run("off.py", {scriptPath : off_signal}, function(err) {
-			if (err) console.log(err);
-			console.log('OFF');
-		});
-	} else if (stateInt === 1) {
-		pyshell.run("on.py", {scriptPath : on_signal}, function(err) {
-			if (err) console.log(err);
-			console.log('ON');
+		return new Promise(function(resolve, reject) {
+			var stateInt = parseInt(state);
+
+			pyshell.run(stateInt === 0 ? "off.py" : "on.py", 
+				{ scriptPath : stateInt === 0 ? off_signal : on_signal },
+				function(err) {
+					if (err)
+						return reject(err);
+
+					return resolve(stateInt === 0 ? 'OFF' : 'ON');
+			});
 		});
 	}
-    }
+	
+	CheckState() {
+		return new Promise(function(resolve, reject) {
+
+		});
+	}
 }
 
 
