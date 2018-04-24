@@ -1,8 +1,11 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var app = express();
-var port = 8000;
-var stateRoutes = require('./routes/states');
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    app = express(),
+    cors = require('cors'),
+    compression = require('comrpession');
+
+var ChangeRoutes = require('./Routes/Changer'),
+    CheckRoutes = require('./Routes/Checker');
 
 //Body - parsing
 app.use(bodyParser.urlencoded({
@@ -11,14 +14,10 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-app.options("/*", function (req, res, next) {
-	res.header('Access-Control-Allow-Origin', '*');
-	res.header('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
-	res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Request-With');
-	res.sendStatus(200);
-});
+app.use(cors());
 
-app.use('/api/state/', stateRoutes);
+app.use('/checker', CheckRoutes);
+app.use('/changer', ChangeRoutes);
 
 app.listen(port, function(err) {
     if (err)

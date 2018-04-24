@@ -24,6 +24,8 @@
   "homepage": "https://github.com/UniversityGroup/CyberSmart-Node#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "compression": "^1.7.2",
+    "cors": "^2.8.4",
     "express": "^4.16.2",
     "python-shell": "^0.5.0"
   }

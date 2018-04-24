@@ -1,8 +1,7 @@
-/* jshint esversion : 6 */
 var route = require('express').Router();
-var StateHandler = new(require('../handlers/StateHandler'))();
+var StateHandler = new(require('../../handlers/StateHandler'))();
 
-route.post('/changestate', function(req, res) {
+route.post('/state', function(req, res) {
     StateHandler.ChangeState(req.body.state)
     .then(response => {
         return res.status(200).send({ "state " : response });
@@ -11,7 +10,4 @@ route.post('/changestate', function(req, res) {
     });
 });
 
-route.get('/state', function(req, res) {
-    StateHandler.CheckState()
-});
 module.exports = route;
