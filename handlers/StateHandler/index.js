@@ -1,19 +1,25 @@
-/*jshint esversion: 6*/
-var pi = false;
+var pyshell = require('python-shell'),
+    directory = '/home/pi/Documents/Projects/CyberSmart-Node/handlers/StateHandler',
+    script = 'operate.py';
 
-var SWITCH = [];
-var pins = [7];
-
-class StateHandler {
+module.exports = new class StateHandler {
     constructor() {
         
     }
 
     ChangeState(state) {
-        for (let pin in pins) {
-            
-        }   
+        return new Promise(function(resolve, reject) {
+            var stateInt = parseInt(state);
+
+            pyshell.run(script, { 
+                scriptPath : directory, 
+                args : [stateInt]
+            }, function(err) {
+                    if(err)
+                        return reject(err);
+
+                return resolve('State altered');
+            })
+        });
     }
 }
-
-module.exports = StateHandler;

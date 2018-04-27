@@ -1,13 +1,12 @@
 var route = require('express').Router();
-var StateHandler = new(require('../handlers/StateHandler'))();
+var StateHandler = require('../handlers/StateHandler');
 
 route.post('/changestate', function(req, res) {
-    StateHandler.ChangeState(1);
-    try {
-        res.status(200).send({ "state" : req.body.state });
-    } catch (ex) {
-        res.status(400).send({ "error" : "Error setting state"} );
-    }
+    StateHandler.ChangeState(req.body.state).then(result => {
+        res.status(200).send({ "state" : result });
+    }).catch(err => {
+        res.status(400).send({ "error" : ex } );
+    })   
 });
 
 module.exports = route;
